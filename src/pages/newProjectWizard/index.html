@@ -172,8 +172,8 @@
 .flipper {
 	transition: 0.6s;
 	transform-style: preserve-3d;
-
 	position: relative;
+  z-index: 10;
 }
 
 /* hide back of pane during swap */
@@ -251,7 +251,7 @@ section.content {
                                 </div>
                                 <div class="project-name-input input-block">
                                     <label for="due_date">Due Date</label>
-                                    <input id="due-date" name="due-date" type="date" value="" placeholder="Due Date"/>
+                                    <input id="due_date" name="due_date" type="date" value="" placeholder="Due Date"/>
                                 </div>
                                 <div class="comments-box input-block">
                                     <label for="comments">Comments</label>

@@ -89,7 +89,58 @@ const dbInteractionCall = (task, status, project) => {
         } else {
             const dataString = JSON.stringify(data);
 
-            window.sessionStorage.setItem(status, dataString);
+            console.log(status)
+            console.log(dataString)
+
+            if(typeof(status) == 'object') {
+                const pendingProjects = [];
+                const inProgressProjects = [];
+                const JSONProjects = JSON.parse(dataString);
+
+                for(let project in JSONProjects) {
+                    if (JSONProjects[project].status == 'pending') {
+                        pendingProjects.push(JSONProjects[project]);
+                    } else if (JSONProjects[project].status == 'inProgress') {
+                        inProgressProjects.push(JSONProjects[project]);
+                    }
+                }
+
+                // status.forEach((item) => {
+                //     console.log(item)
+                //     console.log(dataString)
+                //     console.log(JSON.parse(dataString))
+                //     if (item == 'pending') {
+                //         for(let projectStatus in JSONProjects) {
+                //             if (JSONProjects[projectStatus].status == item) {
+                //                 pendingProjects.push(JSONProjects[projectStatus]);
+                //                 //window.sessionStorage.setItem(JSONProjects[projectStatus].status, JSONProjects[projectStatus]);
+                //             }
+                //         }
+                //     }
+                //     if (item == 'inProgress') {
+                //         for(let projectStatus in JSONProjects) {
+                //             console.log(JSONProjects[projectStatus].status)
+                //             console.log(JSONProjects[projectStatus])
+                //             console.log(item)
+                //             if (JSONProjects[projectStatus].status == item) {
+                //                 inProgressProjects.push(JSONProjects[projectStatus]);
+                //                 //window.sessionStorage.setItem(JSONProjects[projectStatus].status, JSONProjects[projectStatus]);
+                //             }
+                //         }
+                //     }
+                    
+                //     console.log(JSON.stringify(pendingProjects))
+                //     console.log(JSON.stringify(inProgressProjects))
+                // })
+                window.sessionStorage.setItem('pending', JSON.stringify(pendingProjects));
+                window.sessionStorage.setItem('inProgress', JSON.stringify(inProgressProjects));
+            } else {
+                console.log(status);
+                console.log(dataString)
+                console.log(JSON.parse(dataString))
+                window.sessionStorage.setItem(status, dataString);
+            }
+
             return data;
         }
     })

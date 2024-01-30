@@ -282,110 +282,78 @@ const makeTableCard = (project) => {
                           <div class="details-quantity"><p> Quantity: <div style="font-size: 18px">${project.quantity}</div></p></div>
                           <div class="details-material"><p> Material: <div style="font-size: 18px">${project.material} @ ${project.thickness} ${project.unit}</div></p></div>
                           <div class="details-time-inputs">
-                          <fieldset>
-                          <legend>Edit Project</legend>
-                          <form name="project-updates">
                             ${(function(){
                               if (project.status == 'pending') {
                                 return `
-                                <div class="cut-labor-time-inputs">
-                                <div class="cut-time-input">
-                                <label for="cut-time-input">Cut Time:</label>
-                                <input name="cut-time-input" id="cut-time-input" type="Number" style="width: 50px; padding: 5px" disabled /><span> minutes</span>
-                              </div>
-                              <div class="labor-time-input">
-                                <label for="labor-time-input">Labor Time:</label>
-                                <input name="labor-time-input" id="labor-time-input" type="Number" style="width: 50px; padding: 5px" disabled /><span> minutes</span>
-                              </div>
-                                </div>
+                                  <div class="cut-time-input">
+                                    <label for="cut-time-input">Cut Time:</label>
+                                    <input name="cut-time-input" id="cut-time-input" type="Number" disabled /><span> minutes</span>
+                                  </div>
+                                  <div class="labor-time-input">
+                                    <label for="labor-time-input">Labor Time:</label>
+                                    <input name="labor-time-input" id="labor-time-input" type="Number" disabled /><span> minutes</span>
+                                  </div>
                                 <div class="status-input">
-                                  <fieldset>
-                                    <legend>Update Status</legend>
                                     <input type="radio" id="in_progress" name="status_update" value="In Progress">
-                                    <label for="in_progress">In Progress</label><br />
-                                    <input type="radio" id="completed" name="status_update" value="Completed" disabled>
-                                    <label for="completed">Completed</label><br />
+                                    <label for="in_progress">Move To In Progress</label><br />
                                     <input type="radio" id="on_hold" name="status_update" value="On Hold">
-                                    <label for="on_hold">On Hold</label>
-                                  </fieldset>
+                                    <label for="on_hold">Put On Hold</label>
                                 </div>
                                 `
                               } else if (project.status == 'inProgress') {
                                 return `
-                                <div class="cut-labor-time-inputs">
                                   <div class="cut-time-input">
                                     <label for="cut-time-input">Cut Time:</label>
-                                    <input name="cut-time-input" id="cut-time-input" type="Number" style="width: 50px; padding: 5px" required /><span> minutes</span>
+                                    <input name="cut-time-input" id="cut-time-input" type="Number" required /><span> minutes</span>
                                   </div>
                                   <div class="labor-time-input">
                                     <label for="labor-time-input">Labor Time:</label>
-                                    <input name="labor-time-input" id="labor-time-input" type="Number" style="width: 50px; padding: 5px" required /><span> minutes</span>
-                                  </div>
+                                    <input name="labor-time-input" id="labor-time-input" type="Number" required /><span> minutes</span>
                                 </div>
                                 <div class="status-input">
-                                  <fieldset>
-                                    <legend>Update Status</legend>
-                                    <input type="radio" id="in_progress" name="status_update" value="In Progress" disabled>
-                                    <label for="in_progress">In Progress</label><br />
                                     <input type="radio" id="completed" name="status_update" value="Completed">
-                                    <label for="completed">Completed</label><br />
+                                    <label for="completed">Move To Completed</label><br />
                                     <input type="radio" id="on_hold" name="status_update" value="On Hold">
-                                    <label for="on_hold">On Hold</label>
-                                  </fieldset>
+                                    <label for="on_hold">Put On Hold</label>
                                 </div>
                                 `                                    
                               } else if (project.status == 'completed') {
                                 return `
-                                <div class="cut-labor-time-inputs">
                                   <div class="cut-time-input">
                                     <label for="cut-time-input">Cut Time:</label>
-                                    <input name="cut-time-input" id="cut-time-input" type="Number" style="width: 50px; padding: 5px" value="${project.cut_time}" disabled /><span> minutes</span>
+                                    <input name="cut-time-input" id="cut-time-input" type="Number" value="${project.cut_time}" disabled /><span> minutes</span>
                                   </div>
                                   <div class="labor-time-input">
                                     <label for="labor-time-input">Labor Time:</label>
-                                    <input name="labor-time-input" id="labor-time-input" type="Number" style="width: 50px; padding: 5px" value="${project.labor_time}" disabled /><span> minutes</span>
+                                    <input name="labor-time-input" id="labor-time-input" type="Number" value="${project.labor_time}" disabled /><span> minutes</span>
                                   </div>
-                                </div>
                                 <div class="status-input">
-                                  <fieldset>
-                                    <legend>Update Status</legend>
-                                    <input type="radio" id="completed" name="status_update" value="Completed" disabled>
-                                    <label for="completed">Completed</label><br />
-                                    <input type="radio" id="on_hold" name="status_update" value="On Hold">
-                                    <label for="on_hold">On Hold</label><br />
                                     <input type="radio" id="archived" name="status_update" value="Archived">
-                                    <label for="on_hold">Archived</label>
-                                  </fieldset>
+                                    <label for="on_hold">Move To Archived</label><br />
+                                    <input type="radio" id="on_hold" name="status_update" value="On Hold">
+                                    <label for="on_hold">Put On Hold</label>
                                 </div>
                                 `                                    
                               } else if (project.status == 'archived') {
                                 return `
-                                <div class="cut-labor-time-inputs">
                                   <div class="cut-time-input">
                                     <label for="cut-time-input">Cut Time:</label>
-                                    <input name="cut-time-input" id="cut-time-input" type="Number" style="width: 50px; padding: 5px" value="${project.cut_time}" disabled /><span> minutes</span>
+                                    <input name="cut-time-input" id="cut-time-input" type="Number" value="${project.cut_time}" disabled /><span> minutes</span>
                                   </div>
                                   <div class="labor-time-input">
                                     <label for="labor-time-input">Labor Time:</label>
-                                    <input name="labor-time-input" id="labor-time-input" type="Number" style="width: 50px; padding: 5px" value="${project.labor_time}" disabled /><span> minutes</span>
+                                    <input name="labor-time-input" id="labor-time-input" type="Number" value="${project.labor_time}" disabled /><span> minutes</span>
                                   </div>
-                                </div>
                                 <div class="status-input">
-                                  <fieldset>
-                                    <legend>Update Status</legend>
                                     <input type="radio" id="pending" name="status_update" value="Pending">
-                                    <label for="pending">Pending</label><br />
+                                    <label for="pending">Move To Pending</label><br />
                                     <input type="radio" id="on_hold" name="status_update" value="On Hold">
-                                    <label for="on_hold">On Hold</label><br />
-                                    <input type="radio" id="archived" name="status_update" value="Archived" disabled>
-                                    <label for="on_hold">Archived</label>
-                                  </fieldset>
+                                    <label for="on_hold">Move To On Hold</label><br />
                                 </div>
                                 `                                    
                               }
                             })()}
                             <input type="submit" class="apply-updates-button" value="Apply Updates" />
-                          </fieldset>
                           </div>
                        </div>`;
                   
@@ -406,35 +374,38 @@ const makeTableCard = (project) => {
 
     applyUpdatesButton.addEventListener(('click'), (e) => {
       e.preventDefault();
-      const fieldSet = e.target.parentElement;
-      const updatesForm = e.target.parentElement;
-      const status = updatesForm.querySelector('.status-input');
-      const cutInput = updatesForm.querySelector('.cut-time-input');
-      const laborInput = updatesForm.querySelector('.labor-time-input');
+      // const fieldSet = e.target.parentElement;
+      // const updatesForm = e.target.parentElement;
+      const updateInputsParent = e.target.parentElement;
+      const updateInputs = updateInputsParent.querySelectorAll('input');
+      const status = updateInputsParent.querySelector('.status-input');
+      const cutInput = updateInputsParent.querySelector('.cut-time-input');
+      const laborInput = updateInputsParent.querySelector('.labor-time-input');
+
+      const thisCard = updateInputsParent.parentElement.parentElement;
 
       let newStatus;
 
-      const formData = new FormData(updatesForm);
+      // const formData = new FormData(updatesForm);
+      console.log(updateInputs)
 
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ": " + pair[1]);
-
-        if (pair[0] == 'status_update' && pair[1] == 'On Hold') {
-          newStatus = 'onHold';
-        } else if (pair[0] == 'status_update' && pair[1] == 'In Progress') {
-          newStatus = 'inProgress';
-        } else {
-          if (pair[0] == 'cut-time-input') {
-            project['cut_time'] = pair[1];
+      updateInputs.forEach((input) => {
+        if (input.type == 'text') {
+          if (input.value != '') {
+            console.log(input.value);
           }
-          if (pair[0] == 'labor-time-input') {
-            project['labor_time'] = pair[1];
+        }
+        if (input.type == 'radio') {
+          if (input.checked) {
+            if (input.value.split(' ').length > 1) {
+              newStatus = input.value.toLowerCase().split(' ')[0] + input.value.toLowerCase().split(' ')[1].charAt(0).toUpperCase() + input.value.toLowerCase().split(' ')[1].substring(1);
+            } else {
+              newStatus = input.value.toLowerCase();
+            }
+        
           }
-          if (pair[0] == 'status_update') {
-            newStatus = pair[1].toLowerCase();
-          }
-        }        
-      }
+        }
+      })
 
       if (newStatus == undefined) {
         status.classList.add('error');
@@ -444,17 +415,49 @@ const makeTableCard = (project) => {
         laborInput.classList.add('error');
       } else {
         dbUtils.dbInteractionCall('update', newStatus, project);
-
-        window.location.reload();
       }
+
+      // for (let pair of formData.entries()) {
+      //   console.log(pair[0] + ": " + pair[1]);
+
+      //   if (pair[0] == 'status_update' && pair[1] == 'On Hold') {
+      //     newStatus = 'onHold';
+      //   } else if (pair[0] == 'status_update' && pair[1] == 'In Progress') {
+      //     newStatus = 'inProgress';
+      //   } else {
+      //     if (pair[0] == 'cut-time-input') {
+      //       project['cut_time'] = pair[1];
+      //     }
+      //     if (pair[0] == 'labor-time-input') {
+      //       project['labor_time'] = pair[1];
+      //     }
+      //     if (pair[0] == 'status_update') {
+      //       newStatus = pair[1].toLowerCase();
+      //     }
+      //   }        
+      // }
+
+      // if (newStatus == undefined) {
+      //   status.classList.add('error');
+      // } else if (project['cut_time'].length < 1) {
+      //   cutInput.classList.add('error');
+      // } else if (project['labor_time'].length < 1) {
+      //   laborInput.classList.add('error');
+      // } else {
+      //   dbUtils.dbInteractionCall('update', newStatus, project);
+
+      //   //window.location.reload();
+      // }
 
       console.log(newStatus)
       console.log(project['cut_time'])
       console.log(project['labor_time'])
 
+      moveToNewStatus(thisCard, status, project['cut_time']);
+
       //dbUtils.dbInteractionCall('update', newStatus, project);
 
-      //window.location.reload();
+      window.location.reload();
 
     })
 
@@ -541,6 +544,7 @@ const makeCard = (project) => {
       if (cutTime.value.length < 1) {
         cutTime.classList.add('invalid-error');
       } else {
+        console.log('aboutToMoveToNewStatus');
         moveToNewStatus(thisCard, status, cutTime);
         thisCard.remove();
       }
